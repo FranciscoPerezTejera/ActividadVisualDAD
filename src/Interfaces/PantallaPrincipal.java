@@ -17,6 +17,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }
 
+    public PantallaPrincipal(DefaultTableModel tabla) {
+        
+        this.tabla = tabla;
+        String[] columnas = {"NNOMBRE", "APELLIDOS", "NACIONALIDAD", "SEXO", "EDAD", "ALTURA", "GOLES", "ASISTENCIAS", "AMARILLAS", "ROJAS"};
+        this.tabla.setColumnIdentifiers(columnas);
+        initComponents();
+        estadisticasJugadoresJTable.setModel(this.tabla);
+    }
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -63,17 +73,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addComponent(altaFutbolistaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(314, 314, 314))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1037, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +105,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,34 +118,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void altaFutbolistaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaFutbolistaButtonActionPerformed
 
         EntradaFutbolistas nueva = new EntradaFutbolistas();
-
-        Futbolista futbolista = new Futbolista();
-
-        while (nueva.getEnviarButton().isSelected()) {
-
-            if (nueva.getEnviarButton().isSelected()) {
-
-                futbolista.setNombre(nueva.getNombreFutbolistaTextField().getText());
-                futbolista.setApellidos(nueva.getApellidosFutbolistaTextField().getText());
-               // futbolista.setAltura(Integer.parseInt(nueva.getAlturaTextField().toString()));
-                futbolista.setEdad(nueva.getEdadSpinner().getComponentCount());
-                futbolista.setGoles(nueva.getGolesSpinner().getComponentCount());
-                futbolista.setAsistencias(nueva.getAsistenciasSpinner().getComponentCount());
-                futbolista.setTarjetasAmarillas(nueva.getAmarillasSpinner().getComponentCount());
-                futbolista.setTarjetasRojas(nueva.getRojasSpinner().getComponentCount());
-                futbolista.setNacionalidad(nueva.getNaciionalidadFutbolista().getText());
-
-            }
-        }
-
-        Object[] fut = {futbolista.getNombre(), futbolista.getApellidos(),
-            futbolista.getNacionalidad(), futbolista.getSexo(),
-            futbolista.getEdad(), futbolista.getGoles(), futbolista.getAsistencias(),
-            futbolista.getTarjetasAmarillas(), futbolista.getTarjetasRojas()};
-
-        tabla.addRow(fut);
-
-
+        this.dispose();
     }//GEN-LAST:event_altaFutbolistaButtonActionPerformed
 
 

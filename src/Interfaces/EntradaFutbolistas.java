@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Clases.Futbolista;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -12,14 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 2damb
  */
 public class EntradaFutbolistas extends javax.swing.JFrame {
-    
-    
+
+    Futbolista futbolista;
+
     /**
      * Creates new form EntradaFutbolistas
      */
@@ -164,8 +167,18 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
         });
 
         cancelarButton.setText("CANCELAR");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
         borrarButton.setText("BORRAR");
+        borrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelEntradaFutbolistasLayout = new javax.swing.GroupLayout(panelEntradaFutbolistas);
         panelEntradaFutbolistas.setLayout(panelEntradaFutbolistasLayout);
@@ -302,18 +315,30 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     }//GEN-LAST:event_alturaTextFieldActionPerformed
 
     private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
-        
-        
+
+        DefaultTableModel tabla = new DefaultTableModel();
+        futbolista = new Futbolista();
+
+       
+
+    }//GEN-LAST:event_enviarButtonActionPerformed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
         
         this.dispose();
         
-    }//GEN-LAST:event_enviarButtonActionPerformed
-    
-    
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
+        
+        sexoBottonGroup.clearSelection();
+        
+        
+    }//GEN-LAST:event_borrarButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-
     public JLabel getAlturaLabel() {
         return alturaLabel;
     }
@@ -561,6 +586,7 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     public void setTarjetasAmarillasCheckBox(JCheckBox tarjetasAmarillasCheckBox) {
         this.tarjetasAmarillasCheckBox = tarjetasAmarillasCheckBox;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alturaLabel;
