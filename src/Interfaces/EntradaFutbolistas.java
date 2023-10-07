@@ -5,6 +5,9 @@
 package Interfaces;
 
 import Clases.Futbolista;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -20,15 +23,104 @@ import javax.swing.table.DefaultTableModel;
  * @author 2damb
  */
 public class EntradaFutbolistas extends javax.swing.JFrame {
-
-    Futbolista futbolista;
-
+    
+    DefaultTableModel tabla;
+    ArrayList<Futbolista> listaFutbolistas = new ArrayList<>();
     /**
      * Creates new form EntradaFutbolistas
      */
-    public EntradaFutbolistas() {
-        this.setVisible(true);
+    public EntradaFutbolistas(ArrayList<Futbolista> fut) {
+
         initComponents();
+        amarillasJPanel.setVisible(false);
+        rojasPanel.setVisible(false);
+        alturaSlider.setMinimum(63);
+        alturaSlider.setMaximum(289);
+        alturaSlider.setMajorTickSpacing(50);
+        alturaSlider.setMinorTickSpacing(10);
+        alturaSlider.setPaintTicks(true);
+        alturaSlider.setPaintLabels(true);
+        this.tabla = tabla;
+        
+        if (fut != null)
+            this.listaFutbolistas = fut;
+        
+        alturaSlider.addChangeListener((e) -> {
+
+            int valor = alturaSlider.getValue();
+            numeroAlturaLabel.setText(String.valueOf(valor));
+
+        });
+
+        tarjetasAmarillasCheckBox.addChangeListener((c) -> {
+
+            if (tarjetasAmarillasCheckBox.isSelected()) {
+                amarillasJPanel.setVisible(true);
+            }
+            if (!tarjetasAmarillasCheckBox.isSelected()) {
+                amarillasJPanel.setVisible(false);
+            }
+
+        });
+
+        tarjetasRojasCheckBox.addChangeListener((c) -> {
+
+            if (tarjetasRojasCheckBox.isSelected()) {
+                rojasPanel.setVisible(true);
+            }
+            if (!tarjetasRojasCheckBox.isSelected()) {
+                rojasPanel.setVisible(false);
+            }
+
+        });
+        
+        edadSpinner.addChangeListener((e) -> {
+        
+            int valor = (int) edadSpinner.getValue();
+            
+            if (valor < 0)
+                edadSpinner.setValue(0);
+            
+        });
+        
+        golesSpinner.addChangeListener((e) -> {
+        
+            int valor = (int) golesSpinner.getValue();
+            
+            if (valor < 0)
+                golesSpinner.setValue(0);
+            
+        });
+                
+        asistenciasSpinner.addChangeListener((e) -> {
+        
+            int valor = (int) asistenciasSpinner.getValue();
+            
+            if (valor < 0)
+                asistenciasSpinner.setValue(0);
+            
+        });
+       
+        amarillasSpinner.addChangeListener((e) -> {
+        
+            int valor = (int) amarillasSpinner.getValue();
+            
+            if (valor < 0)
+                amarillasSpinner.setValue(0);
+            
+        });
+        
+        rojasSpinner.addChangeListener((e) -> {
+        
+            int valor = (int) rojasSpinner.getValue();
+            
+            if (valor < 0)
+                rojasSpinner.setValue(0);
+            
+        });
+        
+
+        this.setVisible(true);
     }
 
     /**
@@ -40,125 +132,138 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sexoBottonGroup = new javax.swing.ButtonGroup();
+        sexoButtonGroup = new javax.swing.ButtonGroup();
         panelEntradaFutbolistas = new javax.swing.JPanel();
         nombreLabel = new javax.swing.JLabel();
         nombreFutbolistaTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        apellidosLabel = new javax.swing.JLabel();
         apellidosFutbolistaTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        naciionalidadFutbolista = new javax.swing.JTextField();
+        nacionalidadLabel = new javax.swing.JLabel();
+        nacionalidadFutbolista = new javax.swing.JTextField();
         edadFutbolistaLabel = new javax.swing.JLabel();
         edadSpinner = new javax.swing.JSpinner();
         alturaLabel = new javax.swing.JLabel();
-        alturaTextField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         masculinoRadioButton = new javax.swing.JRadioButton();
         femeninoRadioButton = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
+        sexoLabel = new javax.swing.JLabel();
         golesLabel = new javax.swing.JLabel();
         golesSpinner = new javax.swing.JSpinner();
         existenciaLabel = new javax.swing.JLabel();
         asistenciasSpinner = new javax.swing.JSpinner();
         tarjetasAmarillasCheckBox = new javax.swing.JCheckBox();
-        panelAmarillasJPanel = new javax.swing.JPanel();
+        amarillasJPanel = new javax.swing.JPanel();
         cuantasAmarillasLabel = new javax.swing.JLabel();
         amarillasSpinner = new javax.swing.JSpinner();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
+        tarjetasRojasCheckBox = new javax.swing.JCheckBox();
+        rojasPanel = new javax.swing.JPanel();
         cuantasRojasLabel = new javax.swing.JLabel();
         rojasSpinner = new javax.swing.JSpinner();
         enviarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         borrarButton = new javax.swing.JButton();
+        alturaSlider = new javax.swing.JSlider();
+        numeroAlturaLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        sexoBottonGroup.add(masculinoRadioButton);
-        sexoBottonGroup.add(femeninoRadioButton);
+        sexoButtonGroup.add(masculinoRadioButton);
+        sexoButtonGroup.add(femeninoRadioButton);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
+        nombreLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         nombreLabel.setText("NOMBRE:");
 
-        jLabel1.setText("APELLIDOS :");
+        apellidosLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        apellidosLabel.setText("APELLIDOS :");
 
-        jLabel2.setText("NACIONALIDAD:");
+        nacionalidadLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        nacionalidadLabel.setText("PAÍS:");
 
-        naciionalidadFutbolista.addActionListener(new java.awt.event.ActionListener() {
+        nacionalidadFutbolista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                naciionalidadFutbolistaActionPerformed(evt);
+                nacionalidadFutbolistaActionPerformed(evt);
             }
         });
 
+        edadFutbolistaLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         edadFutbolistaLabel.setText("EDAD:");
 
+        alturaLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         alturaLabel.setText("ALTURA:");
 
-        alturaTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alturaTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("CM");
-
+        masculinoRadioButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         masculinoRadioButton.setText("MASCULINO");
 
+        femeninoRadioButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         femeninoRadioButton.setText("FEMENINO");
 
-        jLabel4.setText("SEXO");
+        sexoLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        sexoLabel.setText("SEXO");
 
+        golesLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         golesLabel.setText("GOLES:");
 
+        existenciaLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         existenciaLabel.setText("ASISTENCIAS:");
 
+        tarjetasAmarillasCheckBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tarjetasAmarillasCheckBox.setText("¿TE HAN SACADO TARJETAS AMARILLAS?");
 
+        cuantasAmarillasLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cuantasAmarillasLabel.setText("CUANTAS:");
 
-        javax.swing.GroupLayout panelAmarillasJPanelLayout = new javax.swing.GroupLayout(panelAmarillasJPanel);
-        panelAmarillasJPanel.setLayout(panelAmarillasJPanelLayout);
-        panelAmarillasJPanelLayout.setHorizontalGroup(
-            panelAmarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAmarillasJPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout amarillasJPanelLayout = new javax.swing.GroupLayout(amarillasJPanel);
+        amarillasJPanel.setLayout(amarillasJPanelLayout);
+        amarillasJPanelLayout.setHorizontalGroup(
+            amarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(amarillasJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAmarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(amarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cuantasAmarillasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(amarillasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelAmarillasJPanelLayout.setVerticalGroup(
-            panelAmarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAmarillasJPanelLayout.createSequentialGroup()
+        amarillasJPanelLayout.setVerticalGroup(
+            amarillasJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(amarillasJPanelLayout.createSequentialGroup()
                 .addComponent(cuantasAmarillasLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(amarillasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jCheckBox1.setText("¿TE HAN SACADO TARJETAS ROJAS?");
-        jCheckBox1.setPreferredSize(new java.awt.Dimension(246, 20));
+        tarjetasRojasCheckBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        tarjetasRojasCheckBox.setText("¿TE HAN SACADO TARJETAS ROJAS?");
+        tarjetasRojasCheckBox.setPreferredSize(new java.awt.Dimension(246, 20));
 
+        cuantasRojasLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cuantasRojasLabel.setText("CUNATAS:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        rojasSpinner.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout rojasPanelLayout = new javax.swing.GroupLayout(rojasPanel);
+        rojasPanel.setLayout(rojasPanelLayout);
+        rojasPanelLayout.setHorizontalGroup(
+            rojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rojasPanelLayout.createSequentialGroup()
+                .addGroup(rojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cuantasRojasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rojasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 171, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        rojasPanelLayout.setVerticalGroup(
+            rojasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rojasPanelLayout.createSequentialGroup()
                 .addComponent(cuantasRojasLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rojasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 52, Short.MAX_VALUE))
         );
 
+        enviarButton.setBackground(new java.awt.Color(51, 255, 51));
+        enviarButton.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        enviarButton.setForeground(new java.awt.Color(0, 0, 0));
         enviarButton.setText("ENVIAR");
         enviarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +271,9 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
             }
         });
 
+        cancelarButton.setBackground(new java.awt.Color(255, 0, 0));
+        cancelarButton.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(0, 0, 0));
         cancelarButton.setText("CANCELAR");
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,12 +281,20 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
             }
         });
 
+        borrarButton.setBackground(new java.awt.Color(255, 255, 51));
+        borrarButton.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        borrarButton.setForeground(new java.awt.Color(0, 0, 0));
         borrarButton.setText("BORRAR");
         borrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarButtonActionPerformed(evt);
             }
         });
+
+        numeroAlturaLabel.setText("63");
+        numeroAlturaLabel.setMinimumSize(new java.awt.Dimension(20, 10));
+
+        jLabel1.setText("CM");
 
         javax.swing.GroupLayout panelEntradaFutbolistasLayout = new javax.swing.GroupLayout(panelEntradaFutbolistas);
         panelEntradaFutbolistas.setLayout(panelEntradaFutbolistasLayout);
@@ -190,53 +306,55 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradaFutbolistasLayout.createSequentialGroup()
                         .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
-                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edadFutbolistaLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEntradaFutbolistasLayout.createSequentialGroup()
-                                        .addComponent(golesLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(golesSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(nombreFutbolistaTextField)
-                                        .addComponent(apellidosFutbolistaTextField)
-                                        .addComponent(naciionalidadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEntradaFutbolistasLayout.createSequentialGroup()
-                                            .addComponent(existenciaLabel)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(asistenciasSpinner))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEntradaFutbolistasLayout.createSequentialGroup()
-                                            .addComponent(alturaLabel)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(alturaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel3)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEntradaFutbolistasLayout.createSequentialGroup()
-                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(panelAmarillasJPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tarjetasAmarillasCheckBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
-                                .addComponent(borrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(borrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cancelarButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(apellidosLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nacionalidadLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nombreLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(edadFutbolistaLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEntradaFutbolistasLayout.createSequentialGroup()
+                                                .addComponent(golesLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(golesSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(tarjetasAmarillasCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(amarillasJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nombreFutbolistaTextField)
+                                    .addComponent(apellidosFutbolistaTextField)
+                                    .addComponent(nacionalidadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                        .addComponent(existenciaLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(asistenciasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(numeroAlturaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel1))
+                                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                        .addComponent(alturaLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(alturaSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rojasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tarjetasRojasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(38, 38, 38))
                     .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(edadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(sexoLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(masculinoRadioButton)))
                         .addGap(18, 18, 18)
@@ -248,7 +366,7 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
             .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(sexoLabel)
                     .addComponent(masculinoRadioButton)
                     .addComponent(femeninoRadioButton))
                 .addGap(18, 18, 18)
@@ -257,46 +375,58 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
                     .addComponent(nombreFutbolistaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(apellidosLabel)
                     .addComponent(apellidosFutbolistaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(naciionalidadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nacionalidadLabel)
+                    .addComponent(nacionalidadFutbolista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edadFutbolistaLabel)
                     .addComponent(edadSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(alturaLabel)
-                    .addComponent(alturaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(alturaSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(golesLabel)
-                    .addComponent(golesSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(existenciaLabel)
-                    .addComponent(asistenciasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tarjetasAmarillasCheckBox)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelAmarillasJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(borrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(golesLabel)
+                                    .addComponent(golesSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(existenciaLabel)
+                                    .addComponent(asistenciasSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(58, 58, 58))
+                            .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                                .addComponent(numeroAlturaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(68, 68, 68)))
+                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tarjetasAmarillasCheckBox)
+                            .addComponent(tarjetasRojasCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rojasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(amarillasJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addGroup(panelEntradaFutbolistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(borrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))
+                    .addGroup(panelEntradaFutbolistasLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelEntradaFutbolistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelEntradaFutbolistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,34 +436,56 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void naciionalidadFutbolistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_naciionalidadFutbolistaActionPerformed
+    private void nacionalidadFutbolistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacionalidadFutbolistaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_naciionalidadFutbolistaActionPerformed
-
-    private void alturaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alturaTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alturaTextFieldActionPerformed
+    }//GEN-LAST:event_nacionalidadFutbolistaActionPerformed
 
     private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
 
-        DefaultTableModel tabla = new DefaultTableModel();
-        futbolista = new Futbolista();
+        Futbolista fut = new Futbolista();
 
-       
+        fut.setNombre(nombreFutbolistaTextField.getText());
+        fut.setApellidos(apellidosFutbolistaTextField.getText());
+        fut.setNacionalidad(nacionalidadFutbolista.getText());
+        fut.setSexo(sexoSeleccionado());
+        fut.setEdad(Integer.parseInt(String.valueOf(edadSpinner.getValue())));
+        fut.setAltura(Integer.parseInt(String.valueOf(alturaSlider.getValue())));
+        fut.setGoles(Integer.parseInt(String.valueOf(golesSpinner.getValue())));
+        fut.setAsistencias(Integer.parseInt(String.valueOf(asistenciasSpinner.getValue())));
+        fut.setTarjetasAmarillas(Integer.parseInt(String.valueOf(amarillasSpinner.getValue())));
+        fut.setTarjetasRojas(Integer.parseInt(String.valueOf(rojasSpinner.getValue())));
+
+        listaFutbolistas.add(fut);
+        
+        PantallaPrincipal nueva = new PantallaPrincipal(listaFutbolistas);
+
+        this.dispose();
+
+        nueva.setVisible(true);
 
     }//GEN-LAST:event_enviarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        
+
         this.dispose();
-        
+
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
     private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
-        
-        sexoBottonGroup.clearSelection();
-        
-        
+
+        sexoButtonGroup.clearSelection();
+        nombreFutbolistaTextField.setText("");
+        apellidosFutbolistaTextField.setText("");
+        nacionalidadFutbolista.setText("");
+        edadSpinner.setValue(0);
+        alturaSlider.setValue(0);
+        golesSpinner.setValue(0);
+        asistenciasSpinner.setValue(0);
+        amarillasSpinner.setValue(0);
+        rojasSpinner.setValue(0);
+        tarjetasAmarillasCheckBox.setSelected(false);
+        tarjetasRojasCheckBox.setSelected(false);
+
     }//GEN-LAST:event_borrarButtonActionPerformed
 
     /**
@@ -345,14 +497,6 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
 
     public void setAlturaLabel(JLabel alturaLabel) {
         this.alturaLabel = alturaLabel;
-    }
-
-    public JTextField getAlturaTextField() {
-        return alturaTextField;
-    }
-
-    public void setAlturaTextField(JTextField alturaTextField) {
-        this.alturaTextField = alturaTextField;
     }
 
     public JSpinner getAmarillasSpinner() {
@@ -468,51 +612,51 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     }
 
     public JCheckBox getjCheckBox1() {
-        return jCheckBox1;
+        return tarjetasRojasCheckBox;
     }
 
     public void setjCheckBox1(JCheckBox jCheckBox1) {
-        this.jCheckBox1 = jCheckBox1;
+        this.tarjetasRojasCheckBox = jCheckBox1;
     }
 
     public JLabel getjLabel1() {
-        return jLabel1;
+        return apellidosLabel;
     }
 
     public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+        this.apellidosLabel = jLabel1;
     }
 
     public JLabel getjLabel2() {
-        return jLabel2;
+        return nacionalidadLabel;
     }
 
     public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+        this.nacionalidadLabel = jLabel2;
     }
 
     public JLabel getjLabel3() {
-        return jLabel3;
+        return numeroAlturaLabel;
     }
 
     public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
+        this.numeroAlturaLabel = jLabel3;
     }
 
     public JLabel getjLabel4() {
-        return jLabel4;
+        return sexoLabel;
     }
 
     public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
+        this.sexoLabel = jLabel4;
     }
 
     public JPanel getjPanel1() {
-        return jPanel1;
+        return rojasPanel;
     }
 
     public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
+        this.rojasPanel = jPanel1;
     }
 
     public JRadioButton getMasculinoRadioButton() {
@@ -524,11 +668,11 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     }
 
     public JTextField getNaciionalidadFutbolista() {
-        return naciionalidadFutbolista;
+        return nacionalidadFutbolista;
     }
 
     public void setNaciionalidadFutbolista(JTextField naciionalidadFutbolista) {
-        this.naciionalidadFutbolista = naciionalidadFutbolista;
+        this.nacionalidadFutbolista = naciionalidadFutbolista;
     }
 
     public JTextField getNombreFutbolistaTextField() {
@@ -548,11 +692,11 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     }
 
     public JPanel getPanelAmarillasJPanel() {
-        return panelAmarillasJPanel;
+        return amarillasJPanel;
     }
 
     public void setPanelAmarillasJPanel(JPanel panelAmarillasJPanel) {
-        this.panelAmarillasJPanel = panelAmarillasJPanel;
+        this.amarillasJPanel = panelAmarillasJPanel;
     }
 
     public JPanel getPanelEntradaFutbolistas() {
@@ -572,11 +716,11 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     }
 
     public ButtonGroup getSexoBottonGroup() {
-        return sexoBottonGroup;
+        return sexoButtonGroup;
     }
 
     public void setSexoBottonGroup(ButtonGroup sexoBottonGroup) {
-        this.sexoBottonGroup = sexoBottonGroup;
+        this.sexoButtonGroup = sexoBottonGroup;
     }
 
     public JCheckBox getTarjetasAmarillasCheckBox() {
@@ -587,12 +731,26 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
         this.tarjetasAmarillasCheckBox = tarjetasAmarillasCheckBox;
     }
 
+    private String sexoSeleccionado() {
+
+        Enumeration<AbstractButton> elements = sexoButtonGroup.getElements();
+        while (elements.hasMoreElements()) {
+            AbstractButton button = elements.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return "MASCULINO";
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alturaLabel;
-    private javax.swing.JTextField alturaTextField;
+    private javax.swing.JSlider alturaSlider;
+    private javax.swing.JPanel amarillasJPanel;
     private javax.swing.JSpinner amarillasSpinner;
     private javax.swing.JTextField apellidosFutbolistaTextField;
+    private javax.swing.JLabel apellidosLabel;
     private javax.swing.JSpinner asistenciasSpinner;
     private javax.swing.JButton borrarButton;
     private javax.swing.JButton cancelarButton;
@@ -605,20 +763,19 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
     private javax.swing.JRadioButton femeninoRadioButton;
     private javax.swing.JLabel golesLabel;
     private javax.swing.JSpinner golesSpinner;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton masculinoRadioButton;
-    private javax.swing.JTextField naciionalidadFutbolista;
+    private javax.swing.JTextField nacionalidadFutbolista;
+    private javax.swing.JLabel nacionalidadLabel;
     private javax.swing.JTextField nombreFutbolistaTextField;
     private javax.swing.JLabel nombreLabel;
-    private javax.swing.JPanel panelAmarillasJPanel;
+    private javax.swing.JLabel numeroAlturaLabel;
     private javax.swing.JPanel panelEntradaFutbolistas;
+    private javax.swing.JPanel rojasPanel;
     private javax.swing.JSpinner rojasSpinner;
-    private javax.swing.ButtonGroup sexoBottonGroup;
+    private javax.swing.ButtonGroup sexoButtonGroup;
+    private javax.swing.JLabel sexoLabel;
     private javax.swing.JCheckBox tarjetasAmarillasCheckBox;
+    private javax.swing.JCheckBox tarjetasRojasCheckBox;
     // End of variables declaration//GEN-END:variables
 }

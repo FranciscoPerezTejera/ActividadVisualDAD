@@ -6,7 +6,7 @@ public class Futbolista {
     String nombre;
     String apellidos;
     String nacionalidad;
-    int sexo;
+    String sexo;
     int edad;
     int altura;
     int goles;
@@ -18,7 +18,7 @@ public class Futbolista {
     }
     
     
-    public Futbolista(String nombre, String apellidos, int sexo, int edad, int altura, int goles, int tarjetasAmarillas, int tarjetasRojas) {
+    public Futbolista (String nombre, String apellidos, String sexo, int edad, int altura, int goles, int tarjetasAmarillas, int tarjetasRojas) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.sexo = sexo;
@@ -45,11 +45,11 @@ public class Futbolista {
         this.apellidos = apellidos;
     }
 
-    public int getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(int sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
