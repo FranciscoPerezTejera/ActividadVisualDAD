@@ -467,7 +467,9 @@ public class EntradaFutbolistas extends javax.swing.JFrame {
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
 
+        PantallaPrincipal nueva = new PantallaPrincipal(listaFutbolistas);
         this.dispose();
+        nueva.setVisible(true);
 
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
